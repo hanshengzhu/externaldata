@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+<head>
+    <script src="d3.js"></script>
+</head>
+<body>
+	<script src="external.js"></script>
+
+<script>
+// A scatterplot is simply a set of circles where the x and y coordinates are determined by attributes within a dataset.
+var set1 = [{x:8.04,y:10},{x:6.95,y:8},{x:7.58,y:13},{x:8.81,y:9},{x:8.33,y:11},{x:9.96,y:14},{x:7.24,y:6},{x:4.26,y:4},{x:10.84,y:12},{x:4.82,y:7},{x:5.68,y:5}]
+var set2 = [{x:9.14,y:10},{x:8.14,y:8},{x:8.74,y:13},{x:8.77,y:9},{x:9.26,y:11},{x:8.1,y:14},{x:6.13,y:6},{x:3.1,y:4},{x:9.13,y:12},{x:7.26,y:7},{x:4.74,y:5}]
+var set3 = [{x:7.46,y:10},{x:6.77,y:8},{x:12.74,y:13},{x:7.11,y:9},{x:7.81,y:11},{x:8.84,y:14},{x:6.08,y:6},{x:5.39,y:4},{x:8.15,y:12},{x:6.42,y:7},{x:5.73,y:5}]
+var set4 = [{x:6.58,y:8},{x:5.76,y:8},{x:7.71,y:8},{x:8.84,y:8},{x:8.47,y:8},{x:7.04,y:8},{x:5.25,y:8},{x:12.5,y:19},{x:5.56,y:8},{x:7.91,y:8},{x:6.89,y:8}]
+
+console.log(set1[0]["x"])
+
+
+// Encapsulation
+function scatterPlot(set1){
+   var svg = d3.select("body")
+   .append("svg")
+   .attr("width",400)
+   .attr("height",400)
+
+   var xScale = d3.scaleLinear()
+   .domain([0,20])
+   .range([0,300])
+
+   var yScale = d3.scaleLinear()
+   .domain([0,20])
+   .range([300,0])
+
+   svg.selectAll("circle")
+   .data(set1)
+   .enter()
+   .append("circle")
+   .attr("r",5)
+   .attr("cx",function(d){
+       return xScale(d.x)
+   })
+   .attr("cy",function(d){
+       return yScale(d.y)
+   })
+   .attr("transform","translate(30,30)")
+
+   var xAxis = d3.axisBottom().scale(xScale)
+   var yAxis = d3.axisLeft().scale(yScale)
+
+   svg.append("g").call(xAxis).attr("transform","translate(30,330)")
+
+   svg.append("g").call(yAxis).attr("transform","translate(30,30)")
+
+   svg.append("text").text("x").attr("x",160).attr("y",360)
+
+   svg.append("text").text("y").attr("x",0).attr("y",160)
+
+}
+
+
+function scatterPlot(set2){
+   var svg = d3.select("body")
+   .append("svg")
+   .attr("width",400)
+   .attr("height",400)
+
+   var xScale = d3.scaleLinear()
+   .domain([0,20])
+   .range([0,300])
+
+   var yScale = d3.scaleLinear()
+   .domain([0,20])
+   .range([300,0])
+
+   svg.selectAll("circle")
+   .data(set2)
+   .enter()
+   .append("circle")
+   .attr("r",5)
+   .attr("cx",function(d){
+       return xScale(d.x)
+   })
+   .attr("cy",function(d){
+       return yScale(d.y)
+   })
+   .attr("transform","translate(30,30)")
+
+   var xAxis = d3.axisBottom().scale(xScale)
+   var yAxis = d3.axisLeft().scale(yScale)
+
+   svg.append("g").call(xAxis).attr("transform","translate(30,330)")
+
+   svg.append("g").call(yAxis).attr("transform","translate(30,30)")
+
+   svg.append("text").text("x").attr("x",160).attr("y",360)
+
+   svg.append("text").text("y").attr("x",0).attr("y",160)
+
+}
+
+
+
+scatterPlot(set1)
+scatterPlot(set2)
+scatterPlot(set3)
+scatterPlot(set4)
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
